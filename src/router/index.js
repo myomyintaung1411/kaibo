@@ -1,23 +1,52 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import Main from '../views/Main.vue'
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Main',
+    component: Main,
+    redirect: '/home',
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: resolve => require(['@/views/Home.vue'], resolve),
+      },
+      {
+        path: '/live',
+        name: 'LiveCasino',
+        component: () => import('../views/LiveCasino.vue')
+      },
+      {
+        path: '/promotion',
+        name: 'Promotion',
+        component: () => import('../views/Promotion.vue')
+      },
+      {
+        path: '/online',
+        name: 'OnlineService',
+        component: () => import('../views/OnlineService.vue')
+      },
+      {
+        path: '/mobile',
+        name: 'Mobile',
+        component: () => import('../views/Mobile.vue')
+      },
+      {
+        path: '/deposit',
+        name: 'Deposit',
+        component: () => import('../views/Deposit.vue')
+      },
+    ]
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+
 ]
 
 const router = new VueRouter({
