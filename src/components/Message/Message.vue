@@ -78,6 +78,7 @@ export default {
 <style scoped>
 .message {
   min-width: 300px;
+  /* min-width: 500px; */
   margin: 10px 20px;
   box-sizing: border-box;
   border-radius: 4px;

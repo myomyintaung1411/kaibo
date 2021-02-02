@@ -44,12 +44,31 @@ const routes = [
         name: 'Deposit',
         component: () => import('../views/Deposit.vue')
       },
-    ]
+
+    ],
+
   },
+
+  {
+    path: '/m',
+    name: 'MobileSite',
+    component: resolve => require(['@/views/mobile/MobileSite.vue'], resolve),
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: resolve => require(['@/views/mobile/Login.vue'], resolve),
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: resolve => require(['@/views/mobile/Register.vue'], resolve),
+  }
 
 ]
 
 const router = new VueRouter({
+  mode: "hash",
   routes
 })
 

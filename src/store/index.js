@@ -7,7 +7,9 @@ export default new Vuex.Store({
   state: {
     login: false,
     myAccount: "",
-    myPassowrd: ""
+    myPassowrd: "",
+    QQACC: "",
+    WXACC:""
   },
   mutations: {
   },

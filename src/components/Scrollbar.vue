@@ -30,6 +30,7 @@
 
 <script>
 import AES from "../api/aes";
+
 export default {
   data() {
     return {
@@ -44,10 +45,10 @@ export default {
       var en = this.$Global.en;
       let data = JSON.stringify({ Id: id });
       let endata = AES.encrypt(data, en);
-      var decryptdata = JSON.parse(AES.decrypt(endata, en));
+      // var decryptdata = JSON.parse(AES.decrypt(endata, en));
 
       this.axios
-        .post(this.$Global.scrollData, decryptdata)
+        .post(this.$Global.scrollData, { data: endata })
         .then((res) => {
           var body = res.data;
           var msg = JSON.parse(AES.decrypt(body, en));
@@ -75,12 +76,11 @@ export default {
   height: 30px;
   width: 100%;
   background: rgba(168, 168, 172, 0.815);
-    /* background: linear-gradient(to bottom, #e7f1fd, #aeccee); */
+  /* background: linear-gradient(to bottom, #e7f1fd, #aeccee); */
   display: flex;
-
+  position: relative;
   align-items: center;
   justify-content: center;
-
 }
 .sub-line {
   width: 1200px !important;

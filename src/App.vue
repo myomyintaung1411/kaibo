@@ -4,15 +4,47 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    isMobile() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  created() {
+    // //  var url = window.location.href;
+    // var url = "http://21019.hn232.com";
+    // var s = url;
+    // //  console.log("ss", s);
+    // var a = s.split(".")[0];
+    // // console.log("h is", a);
+    // var userid = a.split("//")[1];
+    // //  console.log(userid,"a isssssssssssssss")
+    // this.GetAgentdata(userid);
+
+    if (this.isMobile()) {
+      this.$router.push("/m");
+    } else {
+      this.$router.push("/");
+    }
+  },
+};
+</script>
+
 <style >
- html {
+html {
   scroll-behavior: smooth;
 }
-body {
-  /* background: #212121; */
-  overflow-x: hidden !important;
-  height: 100vh;
-}
+/* body {
+} */
 * {
   margin: 0;
   padding: 0;
@@ -21,7 +53,9 @@ body {
 #app {
   /* height: 100vh; */
   overflow-x: hidden !important;
-  min-width: 1275px !important;
-   height: 100vh;
+  /* min-width: 1275px !important; */
+  /* height: 100vh; */
+  height: 100%;
+  width: 100%;
 }
 </style>

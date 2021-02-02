@@ -1,31 +1,36 @@
 <template>
   <div class="promotion">
     <div class="promo-banner">
-       <CustomerService/>
+      <CustomerService />
     </div>
     <div class="main-promo">
       <div class="sub-div">
         <div class="left-img-div">
-          <img src="../assets/promotion/gg.png" alt="" style="height: 500px"  draggable="false" />
+          <img
+            src="../assets/promotion/gg.png"
+            alt=""
+            style="height: 500px"
+            draggable="false"
+          />
         </div>
         <div class="six-img-div">
           <div class="upper-img">
             <img
               src="../assets/promotion/66.jpg"
               alt=""
-             class="img"
+              class="img"
               draggable="false"
             />
             <img
               src="../assets/promotion/55.jpg"
               alt=""
-             class="img"
+              class="img"
               draggable="false"
             />
             <img
               src="../assets/promotion/44.jpg"
               alt=""
-             class="img"
+              class="img"
               draggable="false"
             />
           </div>
@@ -33,19 +38,19 @@
             <img
               src="../assets/promotion/11.jpg"
               alt=""
-             class="img"
+              class="img"
               draggable="false"
             />
             <img
               src="../assets/promotion/22.jpg"
               alt=""
-             class="img"
+              class="img"
               draggable="false"
             />
             <img
               src="../assets/promotion/33.jpg"
               alt=""
-             class="img"
+              class="img"
               draggable="false"
             />
           </div>
@@ -56,9 +61,9 @@
 </template>
 
 <script>
-import CustomerService from '../components/CustomerService'
+import CustomerService from "../components/CustomerService";
 export default {
-   components: {
+  components: {
     CustomerService,
   },
 };
@@ -68,7 +73,6 @@ export default {
 .promotion {
   width: 100%;
   background: #242527;
-
 }
 .promo-banner {
   position: relative;
@@ -94,7 +98,7 @@ export default {
 .left-img-div {
   width: 250px;
   height: 100%;
-   background: #242527;
+  background: #242527;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,17 +117,28 @@ export default {
   justify-content: space-around;
   width: 100%;
   align-items: center;
-  margin-top:50px;
+  margin-top: 50px;
 }
 .below-img {
   display: flex;
   justify-content: space-around;
   width: 100%;
   align-items: center;
-  margin-top:2px;
+  margin-top: 2px;
 }
-.img{
+.img {
   height: 200px;
   width: 300px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12);
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.img:hover {
+  -webkit-transform: scale(1.25, 1.25);
+  transform: scale(1.25, 1.25);
+  cursor: pointer;
 }
 </style>

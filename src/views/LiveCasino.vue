@@ -3,16 +3,21 @@
     <div class="banner">
       <!-- sub-image -->
       <div class="sub-img">
-        <img src="../assets/livecasino/c.png" alt="" style="height: 150px"  draggable="false" />
+        <img
+          src="../assets/livecasino/c.png"
+          alt=""
+          style="height: 150px"
+          draggable="false"
+        />
       </div>
       <!-- btn -->
       <div class="btn">
         <img
           src="../assets/livecasino/btn.png"
           alt=""
-          style="width: 120px; height: 50px;cursor:pointer"
+          style="width: 120px; height: 50px; cursor: pointer"
           @click="goToPlayGame"
-           draggable="false"
+          draggable="false"
         />
       </div>
       <CustomerService />
@@ -27,17 +32,51 @@
               width: 100%;
               height: 150px;
               margin-top: 15px;
-
               display: flex;
-              justify-content: flex-end;
+              justify-content: space-between;
             "
           >
-            <img
+            <!-- <img
               src="../assets/livecasino/gamepic.png"
               alt=""
               width="auto;"
               height="120px"
                draggable="false"
+            /> -->
+            <img
+              src="../assets/livecasino/1.png"
+              alt=""
+              height="120px"
+              draggable="false"
+              @click="goToPlayGame"
+            />
+            <img
+              src="../assets/livecasino/2.png"
+              alt=""
+              height="120px"
+              draggable="false"
+              @click="goToPlayGame"
+            />
+            <img
+              src="../assets/livecasino/3.png"
+              alt=""
+              height="120px"
+              draggable="false"
+              @click="goToPlayGame"
+            />
+            <img
+              src="../assets/livecasino/4.png"
+              alt=""
+              height="120px"
+              draggable="false"
+              @click="goToPlayGame"
+            />
+            <img
+              src="../assets/livecasino/5.png"
+              alt=""
+              height="120px"
+              draggable="false"
+              @click="goToPlayGame"
             />
           </div>
           <!-- below two img div  -->
@@ -47,7 +86,7 @@
                 src="../assets/livecasino/servicegirl1.jpg"
                 alt=""
                 style="width: 400px; height: 300px"
-                 draggable="false"
+                draggable="false"
               />
             </div>
 
@@ -56,7 +95,7 @@
                 src="../assets/livecasino/servicegirl2.jpg"
                 alt=""
                 style="width: 400px; height: 300px"
-                 draggable="false"
+                draggable="false"
               />
             </div>
           </div>
@@ -67,7 +106,7 @@
             src="../assets/livecasino/sexygirl.png"
             alt=""
             style="height: 490px"
-             draggable="false"
+            draggable="false"
           />
         </div>
       </div>
@@ -93,7 +132,7 @@ export default {
           password: this.$store.state.myPassword,
         };
         var endata = AES.gameEncrypt(JSON.stringify(data), gameEn);
-        window.open(`http://kb.hn2204.com/?token=${endata}`);
+        window.open(`http://kb1234.com/?token=${endata}`);
       }
     },
   },

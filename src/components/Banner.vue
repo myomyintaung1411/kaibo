@@ -22,19 +22,16 @@
         ></div>
       </div>
     </div>
-    <!-- <div class="customer-service">
-      <img src="../assets/home/service.png" alt="" height="70px;">
-    </div> -->
-    <CustomerService/>
+    <!-- <CustomerService/> -->
   </div>
 </template>
 
 <script>
-import CustomerService from './CustomerService'
+// import CustomerService from './CustomerService'
 export default {
-  components: {
-    CustomerService,
-  },
+  // components: {
+  //   CustomerService,
+  // },
   data() {
     return {
       currentSlide: 1,

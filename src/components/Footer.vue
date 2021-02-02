@@ -52,6 +52,7 @@ export default {};
   justify-content: center;
   flex-direction: column;
   background: #242527;
+  position: relative;
   /* background: red; */
 }
 .sub-footer {

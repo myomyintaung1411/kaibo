@@ -7,9 +7,16 @@
           <div class="up-text">
             <span class="back-url">备用网址</span>
             <span class="line"></span>
-            <span class="agent-login">代理登录</span>
+            <span class="agent-login"
+              ><a href="http://hn2210.com" style="color: #f4d832"
+                >代理登录</a
+              ></span
+            >
             <span class="line"></span>
-            <span class="easy-remine">易记域名:</span>
+            <span class="easy-remine"
+              >易记域名:
+              <a href="http://kb1234.com" style="color: #fff">kb1234.com</a>
+            </span>
           </div>
           <div class="below-input">
             <input
@@ -41,11 +48,17 @@
     <!-- below header with logo -->
     <div class="below-header-main">
       <div class="below-header">
-        <div style="height: 100px; width: 150px; position: relative;">
+        <div style="height: 100px; width: 150px; position: relative">
           <img
             src="../assets/logo.png"
             alt=""
-            style="position: absolute; top: -55%;left:-10%; width: auto; height: 210px"
+            style="
+              position: absolute;
+              top: -55%;
+              left: -10%;
+              width: auto;
+              height: 210px;
+            "
             draggable="false"
           />
         </div>
@@ -117,7 +130,7 @@
           class="close-img"
         />
         <div class="title">凯博娱乐</div>
-        <form action="#" @submit="Register" novalidate>
+        <form class="form" novalidate @submit.prevent="Register">
           <div class="field">
             <input
               type="text"
@@ -160,6 +173,7 @@
 
           <div class="field">
             <input type="submit" value="注册账号" />
+            <!-- <button class="btn-regi">注册账号</button> -->
           </div>
         </form>
       </div>
@@ -221,6 +235,7 @@ export default {
       this.RegisterDialog = false;
     },
     Register() {
+      // console.log("enter register");
       var en = this.$Global.en;
       if (this.register.name == "") return this.$message.warning("请输入账号");
       if (this.register.pass == "") return this.$message.warning("请输入密码");
@@ -238,20 +253,28 @@ export default {
       ) {
         return this.$message.warning("手机号码格式不对");
       }
+
+      if (
+        !/\d/.test(this.register.pass) ||
+        !/[a-zA-Z]/.test(this.register.pass)
+      )
+        return this.$message.warning("密码必须包含数字和英文字母");
+
       var agentName = this.$Global.optioner.Agentname;
-      console.log(agentName, "name of agent is777777777");
+      //console.log(agentName, "name of agent is777777777");
       let data = {
         name: this.register.name,
         pw: this.$md5(this.register.pass),
         phone: this.register.phone,
         agent: agentName,
       };
+      // console.log(data, "sendStr");
       let endata = AES.encrypt(JSON.stringify(data), en);
 
-      var decryptdata = JSON.parse(AES.decrypt(endata, en));
+      //var decryptdata = JSON.parse(AES.decrypt(endata, en));
 
       this.axios
-        .post(this.$Global.registerurl, decryptdata)
+        .post(this.$Global.registerurl, { data: endata })
         .then((res) => {
           var body = res.data;
           var msg = JSON.parse(AES.decrypt(body, en));
@@ -268,7 +291,7 @@ export default {
           if (msg.JsonData.result == "101") {
             this.register.name = "";
             this.register.pass = "";
-            this.register.checkPass = "";
+            this.register.checkpass = "";
             this.register.phone = "";
             this.RegisterDialog = false;
             return this.$message.success("注册成功");
@@ -281,8 +304,11 @@ export default {
     },
     userLogin() {
       var en = this.$Global.en;
+      if (this.$store.state.login == true)
+        return this.$message.warning("您已登陆成功");
       if (this.login.username == "") return this.$message.warning("请输入账号");
       if (this.login.password == "") return this.$message.warning("请输入密码");
+
       let logindata = {
         name: this.login.username,
         pw: this.$md5(this.login.password),
@@ -293,11 +319,11 @@ export default {
 
       // console.log("login endata isssssssss", endata);
 
-      var decryptdata = JSON.parse(AES.decrypt(endata, en));
+      //  var decryptdata = JSON.parse(AES.decrypt(endata, en));
       // console.log("decryptdata isssssssss", decryptdata, en);
 
       this.axios
-        .post(this.$Global.loginurl, decryptdata)
+        .post(this.$Global.loginurl, { data: endata })
         .then((res) => {
           var body = res.data;
           // console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaaa",body)
@@ -332,7 +358,7 @@ export default {
         });
     },
     goToTest() {
-      window.open(`http://kb.hn2204.com/?token=`);
+      window.open(`http://kb1234.com/?token=`);
     },
   },
 };
@@ -378,6 +404,7 @@ export default {
 .line {
   width: 2px;
   background: #be942a;
+  /* transform: rotate(40deg); */
   height: 15px;
 }
 .agent-login {
@@ -523,16 +550,16 @@ export default {
   border-radius: 15px 15px 0 0;
   background: linear-gradient(-135deg, #ddb811, #d0aa41);
 }
-.wrapper form {
+.wrapper .form {
   padding: 10px 30px 50px 30px;
 }
-.wrapper form .field {
+.wrapper .form .field {
   height: 50px;
   width: 100%;
   margin-top: 20px;
   position: relative;
 }
-.wrapper form .field input {
+.wrapper .form .field input {
   height: 100%;
   width: 100%;
   outline: none;
@@ -542,11 +569,11 @@ export default {
   border-radius: 25px;
   transition: all 0.3s ease;
 }
-.wrapper form .field input:focus,
+.wrapper .form .field input:focus,
 form .field input:valid {
   border-color: #4158d0;
 }
-.wrapper form .field label {
+.wrapper .form .field label {
   position: absolute;
   top: 50%;
   left: 20px;
@@ -557,15 +584,15 @@ form .field input:valid {
   transform: translateY(-50%);
   transition: all 0.3s ease;
 }
-form .field input:focus ~ label,
-form .field input:valid ~ label {
+.form .field input:focus ~ label,
+.form .field input:valid ~ label {
   top: 0%;
   font-size: 16px;
   color: #4158d0;
   background: #fff;
   transform: translateY(-50%);
 }
-form .content {
+.form .content {
   display: flex;
   width: 100%;
   height: 50px;
@@ -573,36 +600,36 @@ form .content {
   align-items: center;
   justify-content: space-around;
 }
-form .content .checkbox {
+.form .content .checkbox {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-form .content input {
+.form .content input {
   width: 15px;
   height: 15px;
   background: red;
 }
-form .content label {
+.form .content label {
   color: #262626;
   user-select: none;
   padding-left: 5px;
 }
-form .content .pass-link {
+.form .content .pass-link {
   color: "";
 }
-form .field input[type="submit"] {
+.form .field input[type="submit"] {
   color: #fff;
   border: none;
   padding-left: 0;
-  margin-top: 18px;
+  margin-top: 13px;
   font-size: 22px;
   font-weight: 700;
   cursor: pointer;
   background: linear-gradient(-135deg, #ddb811, #d0aa41);
   transition: all 0.3s ease;
 }
-form .field input[type="submit"]:active {
+.form .field input[type="submit"]:active {
   transform: scale(0.95);
 }
 

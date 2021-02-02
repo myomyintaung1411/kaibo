@@ -3,17 +3,34 @@
     <img
       src="../assets/home/service.png"
       alt=""
-      height="70px;"
-      style="cursor: pointer"
       @click="Service()"
-       draggable="false"
+      draggable="false"
+      class="img"
     />
+    <!-- <div class="text">sdfsdfsdfsdafsfsdfsfsadfsadfsdafsdfsdf</div>
+    <div class="text">sdfsdfsdfsdfsdfsdfsdfsdf</div> -->
+    <div style="" class="text" v-if="this.qq">
+      <!-- {{ this.$Global.optioner.QQ }} -->
+      QQ: <br />
+      {{ this.qq }}
+    </div>
+    <div style="" class="text" v-if="this.wx">
+      <!-- {{ this.$Global.optioner.WX }} -->
+      WX: <br />
+      {{ this.wx }}
+    </div>
   </div>
 </template>
 
 <script>
 import { Base64 } from "js-base64";
 export default {
+  data() {
+    return {
+      qq: "",
+      wx: "",
+    };
+  },
   methods: {
     randomString(len, charSet) {
       charSet =
@@ -54,19 +71,61 @@ export default {
       }
     },
   },
+  // created () {
+  //   this.qq = this.$Global.optioner.QQ
+  //   console.log(this.qq);
+  //   this.wx = this.$Global.optioner.WX
+  //   console.log(this.wx);
+  // },
+
+  created() {
+    this.qq = this.$Global.optioner.QQ;
+    // console.log(this.qq);
+    this.wx = this.$Global.optioner.WX;
+    // console.log(this.wx);
+  },
 };
 </script>
 
-<style  scoped>
+<style  lang="scss" scoped>
 .customer-service {
   position: fixed;
-  width: 100px;
-  height: 100px;
-  /* background: red; */
+  height: 200px;
+  /* width: 100px; */
+  /* height: 200px; */
+  //  background: red;
   right: 1%;
   top: 40%;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+.img {
+  height: auto;
+  width: auto;
+  cursor: pointer;
+}
+// .img:hover {
+//   .text {
+//     display: block;
+//   }
+// }
+.text {
+  width: 100px;
+  height: auto;
+  float: left;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+  background: #000;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 0px;
+  border: 3px solid #4e8df2;
+  border-radius: 15px;
+  margin: 4px 0px;
+  // display: flex;
 }
 </style>
