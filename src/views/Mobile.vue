@@ -7,15 +7,7 @@
       <div class="sub-div">
         <!-- left qr section -->
         <div class="left-qr">
-          <!-- <div
-            style="
-              height: 300px;
-              width: 300px;
-              background: white;
-              margin-top: 30px;
-              position:relative;
-            "
-          > -->
+         
           <div style="margin-top: 30px; height: 300px; background: red">
             <img
               src="../assets/mobile/qr2.jpg"
@@ -95,6 +87,7 @@
         </div>
       </div>
     </div>
+    <!--  -->
   </div>
 </template>
 

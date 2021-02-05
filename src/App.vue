@@ -20,15 +20,7 @@ export default {
     },
   },
   created() {
-    // //  var url = window.location.href;
-    // var url = "http://21019.hn232.com";
-    // var s = url;
-    // //  console.log("ss", s);
-    // var a = s.split(".")[0];
-    // // console.log("h is", a);
-    // var userid = a.split("//")[1];
-    // //  console.log(userid,"a isssssssssssssss")
-    // this.GetAgentdata(userid);
+   
 
     if (this.isMobile()) {
       this.$router.push("/m");

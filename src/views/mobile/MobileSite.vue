@@ -87,11 +87,28 @@
           @click="Service()"
         />
       </div>
-      <div class="qq" v-if="this.showdata">
+      <!-- <div class="qq" v-if="this.showdata">
         QQ : <br />
-        sfsdf
+
+        <span>{{ this.$Global.optioner.QQ }}</span>
+        <hr
+          style="
+            height: 0.5rem;
+
+            background: rgb(231, 231, 154);
+            margin: 1rem 0rem;
+          "
+        />
+        WX : <br />
+        <span>{{ this.$Global.optioner.WX }}</span>
+      </div> -->
+
+      <div class="qrcode" v-if="this.showdata">
+        <img src="../../assets/qrcode.png" alt="" height="350px" width="100%" />
+        <div class="text">QQ: {{ this.$Global.optioner.QQ }}</div>
+
+        <div class="text">WX: {{ this.$Global.optioner.WX }}</div>
       </div>
-      <div class="wx" v-if="this.showdata">WX : <br />sdfsdfs</div>
     </div>
     <!-- end -->
     <div class="hn_c" ref="block1">
@@ -271,7 +288,7 @@ export default {
   },
   created() {
     let s = window.location.href;
-    // var s = "http://24239.localhost:8080";
+    //var s = "http://21019.localhost:8080";
     let h = s.split(".")[0];
     let a = h.split("//")[1];
     this.getAgentInfo(a);
@@ -294,7 +311,10 @@ export default {
         .then((res) => {
           var body = res.data;
           var msg = JSON.parse(AES.decrypt(body, en));
+          // console.log(msg);
           if (msg.JsonData.code == 200) {
+            this.$Global.optioner.QQ = msg.JsonData.QQ;
+            this.$Global.optioner.WX = msg.JsonData.WXH;
             this.$Global.optioner.AgentId = msg.JsonData.Id;
             this.$Global.optioner.AgentName = msg.JsonData.name;
             // console.log(this.$Global)
@@ -371,7 +391,7 @@ export default {
         pwd: this.$md5(this.$store.state.myPassword),
         agent: 5, // 1.hn 2.wl 3.hngs 4.ws 5.kb
       };
-      // console.log(data, "asdfasdfasd");
+      console.log(data, "asdfasdfasd");
       // let data ={
       //   acc:"admin",
       //   pwd:this.$md5("111111")
@@ -381,17 +401,17 @@ export default {
       let data3 = data1.substring(8);
       let add8 = data2 + this.randomString(8);
       let token = this.randomString(9) + add8 + data3;
-      // console.log(data1, data2, data3, add8, token)
+      console.log(data1, data2, data3, add8, token);
       return token;
     },
     Service() {
       this.showdata = !this.showdata;
-      if (this.$store.state.login == false) {
-        return this.$mobilemessage.warning("请先登录");
-      } else {
-        let token = this.doEncrypt();
-        window.open(`http://kefu.hn885.com?token=${token}`);
-      }
+      // if (this.$store.state.login == false) {
+      //   return this.$mobilemessage.warning("请先登录");
+      // } else {
+      //   let token = this.doEncrypt();
+      //   window.open(`http://kefu.hn885.com?token=${token}`);
+      // }
     },
 
     //el 标签  speed 滚动速率 此处是50px 值越大滚动的越快
@@ -559,46 +579,34 @@ export default {
     right: 1%;
     // background: red;
   }
-  .qq {
+  .qrcode {
     position: fixed;
-    // bottom: 120px;
-    z-index: 998;
-    right: 1%;
-    top: 36%;
-    // height: 8rem;
     height: auto;
-    background: #5190f5;
-    width: 14rem;
-    text-align: center;
-    padding: 0.5rem;
-    border-radius: 5px;
-    white-space: normal;
-    word-wrap: break-word;
-    word-break: break-all;
-    font-size: 2.5rem;
-    color: #fff;
-    // margin: 3rem;
-    // display: none;
-  }
-  .wx {
-    position: fixed;
-    // bottom: 120px;
-    z-index: 998;
-    right: 1%;
-    top: 45%;
-    // height: 8rem;
-    height: auto;
-    background: #5190f5;
-    width: 14rem;
-    text-align: center;
-    padding: 0.5rem;
-    border-radius: 5px;
-    white-space: normal;
-    word-wrap: break-word;
-    word-break: break-all;
-    font-size: 2.5rem;
-    margin-top: 2rem;
-    color: #fff;
+    width: 300px;
+    background: #fff;
+    right: 12%;
+    top: 20%;
+    //display: none;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+
+    .text {
+      // width: 100px;
+      width: auto;
+      height: auto;
+      float: left;
+      white-space: normal;
+      word-wrap: break-word;
+      word-break: break-all;
+      // background: #000;
+      text-align: left;
+      color: #000;
+      font-weight: bold;
+      padding: 5px 10px;
+      margin: 4px 0px;
+      font-size: 3rem;
+    }
   }
 }
 
@@ -628,6 +636,7 @@ export default {
     justify-content: center;
     align-items: center;
     margin: 15px 0 10px 0;
+    position: relative;
     .c_body {
       width: 90%;
       display: flex;
@@ -638,9 +647,11 @@ export default {
       border-radius: 5px;
       background: #525151;
       margin-bottom: 10px;
+      position: relative;
       img {
         width: 100%;
         height: auto;
+        position: relative;
         // border-radius: 5px;
       }
       font {

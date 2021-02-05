@@ -20,18 +20,16 @@
           class="img"
         />
 
-        <div style="" class="text" v-if="this.qq">
-          <!-- {{ this.$Global.optioner.QQ }} -->
-          QQ : <br />
-          {{ qq }}
-        </div>
-        <div style="" class="text" v-if="this.wx">
-          <!-- {{ this.$Global.optioner.WX }} -->
-          WX : <br />
-          {{ wx }}
+        <div class="qr_code">
+          <img src="../assets/qrcode.png" alt="" height="200px" width="100%" />
+
+          <div class="text">QQ: {{ qq }}</div>
+
+          <div class="text">WX: {{ wx }}</div>
         </div>
       </div>
       <!--  -->
+      <!-- <CustomerService></CustomerService> -->
     </div>
     <div class="about">
       <div class="about-img">
@@ -62,6 +60,7 @@
 import AES from "../api/aes";
 import Banner from "../components/Banner";
 import Scrollbar from "../components/Scrollbar";
+// import CustomerService from "../components/CustomerService";
 import { Base64 } from "js-base64";
 export default {
   name: "Home",
@@ -88,7 +87,7 @@ export default {
         .then((res) => {
           var body = res.data;
           var msg = JSON.parse(AES.decrypt(body, en));
-          //console.log(msg, "response msg of created");
+          console.log(msg, "response msg of created");
           if (msg.JsonData.code == 200) {
             //saving first time creted agentid and name to use in register section
             this.qq = msg.JsonData.QQ;
@@ -145,8 +144,8 @@ export default {
     },
   },
   created() {
-      var url = window.location.href;
-   // var url = "http://21019.hn232.com";
+    var url = window.location.href;
+    //var url = "http://21019.hn232.com";
     var s = url;
     //  console.log("ss", s);
     var a = s.split(".")[0];
@@ -206,44 +205,48 @@ export default {
   /* background: red; */
 }
 
+//@at-root
+
 .customer-service {
   position: fixed;
-  height: 200px;
-  /* width: 100px; */
-  /* height: 200px; */
-  //  background: red;
-  right: 1%;
-  top: 40%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
+  top: 300px;
+  right: 20px;
+  display: block;
+  cursor: pointer;
+}
+.customer-service:hover {
+  .qr_code {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.qr_code {
+  position: fixed;
+  height: auto;
+  width: 200px;
+  background: #fff;
+  right: 140px;
+  top: 300px;
+  display: none;
 }
 .img {
   height: auto;
   width: auto;
-  cursor: pointer;
+  // cursor: pointer;
 }
-// .img:hover {
-//   .text {
-//     display: block;
-//   }
-// }
+
 .text {
-  width: 100px;
+  // width: 100px;
+  width: auto;
   height: auto;
-  // float: left;
+  float: left;
   white-space: normal;
   word-wrap: break-word;
   word-break: break-all;
-  background: #000;
-  text-align: center;
-  color: #fff;
+  text-align: left;
+  color: #000;
   font-weight: bold;
-  padding: 5px 0px;
-  border: 3px solid #4e8df2;
-  border-radius: 15px;
+  padding: 5px 10px;
   margin: 4px 0px;
-  // display: flex;
 }
 </style>

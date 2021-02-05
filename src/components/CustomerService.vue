@@ -1,23 +1,21 @@
 <template>
-  <div class="customer-service">
-    <img
-      src="../assets/home/service.png"
-      alt=""
-      @click="Service()"
-      draggable="false"
-      class="img"
-    />
-    <!-- <div class="text">sdfsdfsdfsdafsfsdfsfsadfsadfsdafsdfsdf</div>
-    <div class="text">sdfsdfsdfsdfsdfsdfsdfsdf</div> -->
-    <div style="" class="text" v-if="this.qq">
-      <!-- {{ this.$Global.optioner.QQ }} -->
-      QQ: <br />
-      {{ this.qq }}
-    </div>
-    <div style="" class="text" v-if="this.wx">
-      <!-- {{ this.$Global.optioner.WX }} -->
-      WX: <br />
-      {{ this.wx }}
+  <div style="position: relative">
+    <div class="customer-service">
+      <img
+        src="../assets/home/service.png"
+        alt=""
+        @click="Service()"
+        draggable="false"
+        class="img"
+      />
+
+      <div class="qr_code">
+        <img src="../assets/qrcode.png" alt="" height="200px" width="100%" />
+
+        <div class="text">QQ: {{qq}}</div>
+
+        <div class="text">WX: {{wx}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -90,41 +88,57 @@ export default {
 <style  lang="scss" scoped>
 .customer-service {
   position: fixed;
-  height: 200px;
+  // height: 200px;
   /* width: 100px; */
   /* height: 200px; */
   //  background: red;
-  right: 1%;
-  top: 40%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
+  // right: 1%;
+  // top: 40%;
+  top: 300px;
+  right: 20px;
+  display: block;
+  cursor: pointer;
+  // display: flex;
+  // justify-content: space-evenly;
+  // align-items: center;
+  // flex-direction: column;
+}
+.customer-service:hover {
+  .qr_code {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.qr_code {
+  position: fixed;
+  height: auto;
+  width: 200px;
+  background: #fff;
+  right: 140px;
+  top: 300px;
+  display: none;
 }
 .img {
   height: auto;
   width: auto;
-  cursor: pointer;
+  // cursor: pointer;
 }
-// .img:hover {
-//   .text {
-//     display: block;
-//   }
-// }
+
 .text {
-  width: 100px;
+  // width: 100px;
+  width: auto;
   height: auto;
   float: left;
   white-space: normal;
   word-wrap: break-word;
   word-break: break-all;
-  background: #000;
-  text-align: center;
-  color: #fff;
+  // background: #000;
+  text-align: left;
+  color: #000;
   font-weight: bold;
-  padding: 5px 0px;
-  border: 3px solid #4e8df2;
-  border-radius: 15px;
+  padding: 5px 10px;
+  // border: 3px solid #4e8df2;
+  // border-radius: 15px;
   margin: 4px 0px;
   // display: flex;
 }

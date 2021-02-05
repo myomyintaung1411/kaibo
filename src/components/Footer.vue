@@ -9,13 +9,7 @@
         style="padding-right: 10px; cursor: pointer"
         draggable="false"
       />
-      <!-- <div style="display:flex;margin-top:10px;cursor:pointer">
-          <img src="../assets/home/fotter2.png" alt="" width="90%" height="20px;" />
-         <div style="margin-left:10px;margin-top:-10px;">
-              <img src="../assets/home/customer.png" alt="" style="width:200px;">
-         </div>
-      </div> -->
-
+      
       <div class="footer-des">
         <span class="footer-text">关于我们</span>
         <span class="line"></span>
@@ -31,11 +25,6 @@
         <p>COPYRIGHT © 2020 凯博娱乐. All RIGHTS RESERVED.</p>
       </div>
     </div>
-    <!-- <footer>
-     <div class="sub-footer">
-
-     </div>
-    </footer> -->
   </div>
 </template>
 

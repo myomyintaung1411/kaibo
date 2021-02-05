@@ -28,7 +28,7 @@
       />
       <div class="wrapper">
         <div class="title">玩家登录</div>
-        <form action="#" novalidate @submit.prevent="login()">
+        <form action="#" novalidate @submit.prevent>
           <div class="field">
             <input
               type="text"
@@ -153,7 +153,7 @@ export default {
       this.codeList = [];
       const len = 4;
       const chars = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz0123456789";
-      
+
       const charsLen = chars.length;
       for (let i = 0; i < len; i++) {
         const rgb = [
@@ -173,7 +173,10 @@ export default {
       }
       // 将当前数据派发出去
       // this.$emit('update:value', codeList.map(item => item.code).join(''))
-      this.code = this.codeList.map((item) => item.code).join("").toLowerCase();
+      this.code = this.codeList
+        .map((item) => item.code)
+        .join("")
+        .toLowerCase();
     },
     getStyle(data) {
       return `color: ${data.color}; font-size: ${data.fontSize}; padding: ${data.padding}; transform: ${data.transform}`;
